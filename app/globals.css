@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --primary: #1e3a5f;
+  --primary-light: #2d5a8e;
+  --accent: #f97316;
+  --accent-light: #fb923c;
+  --muted: #64748b;
+  --success: #16a34a;
+  --error: #dc2626;
+  --error-light: #fef2f2;
+  --error-border: #fecaca;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --primary: #60a5fa;
+    --primary-light: #93c5fd;
+    --accent: #fb923c;
+    --accent-light: #fdba74;
+    --muted: #94a3b8;
+    --success: #4ade80;
+    --error: #f87171;
+    --error-light: #1e1215;
+    --error-border: #7f1d1d;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Pulse animation for loading text */
+@keyframes pulse-opacity {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-text {
+  animation: pulse-opacity 2s ease-in-out infinite;
+}
