@@ -8,11 +8,7 @@ import NearbyPlaces from "./NearbyPlaces";
 
 /**
  * LocationDetector Component
- * Orchestrates the location detection flow:
- * - Shows loading state while detecting
- * - Shows location card on success
- * - Shows nearby places below the location card (Phase 2)
- * - Shows error card on failure
+ * Orchestrates the app dashboard feed (Location + Places)
  */
 export default function LocationDetector() {
   const { coordinates, locationDetails, loading, error, retry } = useLocation();
@@ -23,7 +19,7 @@ export default function LocationDetector() {
 
   if (error) {
     return (
-      <div className="flex flex-1 items-center justify-center px-4">
+      <div className="flex w-full items-center justify-center px-4 py-8">
         <ErrorCard message={error} onRetry={retry} />
       </div>
     );
@@ -31,20 +27,19 @@ export default function LocationDetector() {
 
   if (coordinates && locationDetails) {
     return (
-      <div className="flex flex-1 flex-col items-center px-4 py-6 gap-8">
-        {/* Phase 1: Location Card */}
-        <LocationCard
-          coordinates={coordinates}
-          locationDetails={locationDetails}
-        />
+      <div className="flex w-full flex-col gap-8 px-4 sm:px-6">
+        {/* Phase 1: Auto Location Card */}
+        <div className="w-full pt-4">
+          <LocationCard
+            coordinates={coordinates}
+            locationDetails={locationDetails}
+          />
+        </div>
 
         {/* Phase 2: Nearby Places */}
-        <div className="w-full max-w-md">
-          <h2
-            className="mb-4 text-lg font-semibold"
-            style={{ color: "var(--foreground)" }}
-          >
-            Places Near You
+        <div className="w-full">
+          <h2 className="mb-4 text-xl font-bold tracking-tight text-white">
+            Trending Near You
           </h2>
           <NearbyPlaces
             coordinates={coordinates}

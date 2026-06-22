@@ -29,16 +29,24 @@ export default function PlacesList({ places, matchType }) {
   }
 
   return (
-    <div id="places-list" className="flex flex-col gap-4">
+    <div className="w-full">
       {matchType === "state" && (
-        <p className="text-xs" style={{ color: "var(--muted)" }}>
+        <p className="mb-4 text-sm text-gray-400">
           No results in your district. Showing places from your state.
         </p>
       )}
 
-      {places.map((place) => (
-        <PlaceCard key={place.id} place={place} />
-      ))}
+      <div
+        id="places-list"
+        className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
+        style={{ scrollPaddingLeft: "1rem" }}
+      >
+        {places.map((place) => (
+          <div key={place.id} className="snap-start">
+            <PlaceCard place={place} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

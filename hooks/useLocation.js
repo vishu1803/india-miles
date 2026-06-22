@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { getLocationDetails } from "@/services/locationService";
+import { getCache, saveCache } from "@/lib/cacheManager";
 
 /**
  * Custom hook for detecting user location.
- * Handles permission, coordinates, reverse geocoding, loading, and errors.
- *
- * @returns {Object} Location state with coordinates, details, loading, and error.
+ * Uses smart caching to prevent unnecessary GPS API calls.
  */
 export function useLocation() {
   const [coordinates, setCoordinates] = useState(null);
@@ -15,13 +15,25 @@ export function useLocation() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const detectLocation = useCallback(async () => {
+  const detectLocation = useCallback(async (forceRefresh = false) => {
     setLoading(true);
     setError(null);
+
+    // 1. Check cache first (if not forcing a refresh)
+    if (!forceRefresh) {
+      const cachedData = getCache("locationCache");
+      if (cachedData) {
+        setCoordinates(cachedData.coordinates);
+        setLocationDetails(cachedData.details);
+        setLoading(false);
+        return;
+      }
+    }
+
     setCoordinates(null);
     setLocationDetails(null);
 
-    // Check if geolocation is supported
+    // 2. Request new GPS location
     if (!navigator.geolocation) {
       setError("Geolocation is not supported on this device.");
       setLoading(false);
@@ -29,7 +41,6 @@ export function useLocation() {
     }
 
     try {
-      // Request browser permission and get coordinates
       const position = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           enableHighAccuracy: true,
@@ -39,30 +50,43 @@ export function useLocation() {
       });
 
       const { latitude, longitude } = position.coords;
-      setCoordinates({ latitude, longitude });
+      const coords = { latitude, longitude };
+      setCoordinates(coords);
 
-      // Reverse geocode the coordinates
+      // Reverse geocode
       const details = await getLocationDetails(latitude, longitude);
       setLocationDetails(details);
+
+      // Save to cache
+      saveCache("locationCache", {
+        coordinates: coords,
+        details: details,
+      });
     } catch (err) {
       if (err.code) {
-        // GeolocationPositionError
         switch (err.code) {
           case err.PERMISSION_DENIED:
-            setError("Location access denied. Please allow location access to continue.");
+            setError(
+              "Location access denied. Please allow location access to continue.",
+            );
             break;
           case err.POSITION_UNAVAILABLE:
-            setError("Unable to detect your location. Position information is unavailable.");
+            setError(
+              "Unable to detect your location. Position information is unavailable.",
+            );
             break;
           case err.TIMEOUT:
             setError("Location request timed out. Please try again.");
             break;
           default:
-            setError("An unknown error occurred while detecting your location.");
+            setError(
+              "An unknown error occurred while detecting your location.",
+            );
         }
       } else {
-        // API or network error
-        setError("Could not fetch address details. Please check your internet connection.");
+        setError(
+          "Could not fetch address details. Please check your internet connection.",
+        );
       }
     } finally {
       setLoading(false);
@@ -70,7 +94,7 @@ export function useLocation() {
   }, []);
 
   useEffect(() => {
-    detectLocation();
+    detectLocation(false);
   }, [detectLocation]);
 
   return {
@@ -78,6 +102,6 @@ export function useLocation() {
     locationDetails,
     loading,
     error,
-    retry: detectLocation,
+    retry: () => detectLocation(true), // Force refresh on retry
   };
 }
