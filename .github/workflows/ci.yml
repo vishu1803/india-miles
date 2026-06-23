@@ -17,14 +17,14 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
         cache: 'npm'
 
     - name: Install Frontend Dependencies
-      run: npm ci
+      run: npm install
 
     - name: Install Backend Dependencies
-      run: cd backend && npm ci
+      run: cd backend && npm install
 
     - name: Run Lint
       run: npm run lint
