@@ -26,19 +26,19 @@ export default function LoginPopup({ isOpen, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-primary/25 backdrop-blur-[2px] transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="glass-panel relative z-10 w-full max-w-sm rounded-3xl p-8 text-center shadow-2xl animate-in fade-in zoom-in duration-200">
+      <div className="bg-canvas border border-hairline shadow-lvl-5 relative z-10 w-full max-w-sm rounded-xl p-8 text-center animate-in fade-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-full p-2 text-white/50 hover:bg-white/10 hover:text-white transition-colors"
+          className="absolute right-4 top-4 rounded-full p-1.5 text-muted hover:bg-canvas-soft-2 hover:text-primary transition-colors"
         >
           <svg
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -51,14 +51,14 @@ export default function LoginPopup({ isOpen, onClose }) {
           </svg>
         </button>
 
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
+        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-canvas-soft-2 border border-hairline text-primary">
           <svg
-            width="28"
-            height="28"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="white"
-            strokeWidth="1.5"
+            stroke="currentColor"
+            strokeWidth="1.75"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -67,10 +67,10 @@ export default function LoginPopup({ isOpen, onClose }) {
           </svg>
         </div>
 
-        <h3 className="mb-2 text-xl font-bold tracking-tight text-white">
+        <h3 className="display-sm text-primary mb-2 font-bold tracking-tight">
           Unlock Your Journey
         </h3>
-        <p className="mb-8 text-sm text-gray-400">
+        <p className="mb-6 text-sm text-body leading-relaxed">
           Sign in to mark places you&apos;ve visited, earn explorer badges, and
           track your travel progress across India.
         </p>
@@ -78,13 +78,13 @@ export default function LoginPopup({ isOpen, onClose }) {
         <div className="flex flex-col gap-3">
           <Link
             href="/register"
-            className="w-full rounded-xl bg-white px-4 py-3.5 text-sm font-bold text-black transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full rounded bg-primary px-4 py-2.5 text-xs font-bold text-on-primary transition-colors hover:bg-body text-center"
           >
             Create Free Account
           </Link>
           <Link
             href="/login"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10"
+            className="w-full rounded border border-hairline bg-canvas px-4 py-2.5 text-xs font-bold text-primary transition-colors hover:bg-canvas-soft-2 text-center"
           >
             Log In
           </Link>

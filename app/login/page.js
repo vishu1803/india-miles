@@ -36,47 +36,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-[100dvh] flex-col bg-canvas-soft selection:bg-primary/10">
       {/* Header */}
-      <header
-        className="flex flex-col items-center gap-1 border-b px-4 py-6"
-        style={{ borderColor: "var(--card-border)" }}
-      >
+      <header className="flex flex-col items-center gap-1 border-b border-hairline bg-canvas px-4 py-5 text-center">
         <Link href="/">
-          <h1
-            className="text-2xl font-bold tracking-wide sm:text-3xl"
-            style={{ color: "var(--primary)" }}
-          >
+          <h1 className="text-xl font-bold tracking-[0.15em] text-primary">
             INDIA MILES
           </h1>
         </Link>
-        <p className="text-sm" style={{ color: "var(--muted)" }}>
+        <p className="caption-mono uppercase tracking-[0.1em] text-xs text-muted mt-0.5">
           Discover India around you
         </p>
       </header>
 
       {/* Form */}
-      <main className="flex flex-1 items-center justify-center px-4 py-8">
-        <div
-          className="w-full max-w-sm rounded-xl border p-6"
-          style={{
-            backgroundColor: "var(--card-bg)",
-            borderColor: "var(--card-border)",
-          }}
-        >
-          <h2 className="mb-6 text-center text-xl font-semibold">
+      <main className="flex flex-1 items-center justify-center px-4 py-12">
+        <div className="w-full max-w-sm rounded-xl border border-hairline bg-canvas p-8 shadow-lvl-3">
+          <h2 className="display-sm mb-6 text-center text-primary font-bold">
             Welcome Back
           </h2>
 
           {error && (
-            <div
-              className="mb-4 rounded-lg border px-4 py-3 text-sm"
-              style={{
-                backgroundColor: "var(--error-light)",
-                borderColor: "var(--error-border)",
-                color: "var(--error)",
-              }}
-            >
+            <div className="mb-4 rounded border border-error/15 bg-error-soft px-4 py-2.5 text-xs font-semibold text-error-deep">
               {error}
             </div>
           )}
@@ -86,8 +67,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="login-email"
-                className="mb-1 block text-sm font-medium"
-                style={{ color: "var(--muted)" }}
+                className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
               >
                 Email
               </label>
@@ -98,12 +78,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="you@example.com"
-                className="w-full rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors focus:ring-2"
-                style={{
-                  backgroundColor: "var(--background)",
-                  borderColor: "var(--card-border)",
-                  color: "var(--foreground)",
-                }}
+                className="w-full rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
               />
             </div>
 
@@ -111,8 +86,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="login-password"
-                className="mb-1 block text-sm font-medium"
-                style={{ color: "var(--muted)" }}
+                className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
               >
                 Password
               </label>
@@ -123,12 +97,7 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Your password"
-                className="w-full rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors focus:ring-2"
-                style={{
-                  backgroundColor: "var(--background)",
-                  borderColor: "var(--card-border)",
-                  color: "var(--foreground)",
-                }}
+                className="w-full rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
               />
             </div>
 
@@ -137,18 +106,17 @@ export default function LoginPage() {
               id="login-submit"
               type="submit"
               disabled={loading}
-              className="w-full cursor-pointer rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
-              style={{ backgroundColor: "var(--primary)" }}
+              className="w-full cursor-pointer rounded bg-primary py-2.5 text-xs font-bold text-on-primary transition-colors hover:bg-body disabled:cursor-not-allowed disabled:opacity-50 mt-2"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
 
             <div className="relative my-2 flex items-center">
-              <div className="flex-grow border-t border-[var(--card-border)]"></div>
-              <span className="mx-4 flex-shrink-0 text-xs text-[var(--muted)]">
+              <div className="flex-grow border-t border-hairline"></div>
+              <span className="mx-4 flex-shrink-0 text-[10px] font-semibold text-muted font-mono uppercase tracking-wider">
                 OR
               </span>
-              <div className="flex-grow border-t border-[var(--card-border)]"></div>
+              <div className="flex-grow border-t border-hairline"></div>
             </div>
 
             {/* Google OAuth Button */}
@@ -157,11 +125,11 @@ export default function LoginPage() {
               onClick={() => {
                 window.location.href = "http://localhost:5000/api/auth/google";
               }}
-              className="flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--card-border)] bg-transparent px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+              className="flex w-full items-center justify-center gap-2 rounded border border-hairline bg-canvas px-4 py-2.5 text-xs font-bold text-primary transition-colors hover:bg-canvas-soft-2"
             >
               <svg
-                width="18"
-                height="18"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -186,15 +154,11 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p
-            className="mt-4 text-center text-sm"
-            style={{ color: "var(--muted)" }}
-          >
+          <p className="mt-6 text-center text-xs text-muted">
             Don&apos;t have an account?{" "}
             <Link
               href="/register"
-              className="font-medium underline"
-              style={{ color: "var(--primary)" }}
+              className="font-bold text-link hover:underline"
             >
               Register
             </Link>

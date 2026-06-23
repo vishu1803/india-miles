@@ -8,13 +8,10 @@ export default function LoadingScreen() {
   return (
     <div
       id="loading-screen"
-      className="flex flex-1 flex-col items-center justify-center gap-6 px-4"
+      className="flex flex-1 flex-col items-center justify-center gap-4 px-4 py-16"
     >
-      <div className="spinner" />
-      <p
-        className="pulse-text text-base font-medium"
-        style={{ color: "var(--muted)" }}
-      >
+      <div className="spinner mb-2" />
+      <p className="caption-mono uppercase tracking-[0.15em] text-muted text-xs font-semibold pulse-text">
         Detecting your location...
       </p>
     </div>

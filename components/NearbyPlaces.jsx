@@ -111,7 +111,7 @@ export default function NearbyPlaces({ coordinates, locationDetails }) {
         className="flex flex-col items-center gap-3 py-8"
       >
         <div className="spinner" />
-        <p className="text-sm" style={{ color: "var(--muted)" }}>
+        <p className="text-xs font-semibold text-muted tracking-wide uppercase pulse-text">
           Finding places near you...
         </p>
       </div>
@@ -123,15 +123,9 @@ export default function NearbyPlaces({ coordinates, locationDetails }) {
     return (
       <div
         id="places-error"
-        className="rounded-xl border p-6 text-center"
-        style={{
-          backgroundColor: "var(--error-light)",
-          borderColor: "var(--error-border)",
-        }}
+        className="rounded-xl border border-error/10 bg-error-soft p-6 text-center"
       >
-        <p className="text-sm" style={{ color: "var(--error)" }}>
-          {error}
-        </p>
+        <p className="text-sm font-semibold text-error-deep">{error}</p>
       </div>
     );
   }

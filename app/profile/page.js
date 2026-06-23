@@ -44,12 +44,12 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-black pb-10 pt-6 sm:pt-10">
-      <div className="mx-auto max-w-md overflow-hidden sm:rounded-[2.5rem]">
+    <div className="min-h-screen bg-canvas-soft pb-16 selection:bg-primary/10">
+      <div className="mx-auto max-w-md border-x border-hairline bg-canvas min-h-screen px-6 pt-10 pb-16 shadow-sm">
         {/* Header Section */}
-        <div className="relative px-6 pb-8 pt-4 text-center">
+        <div className="relative pb-8 text-center">
           {/* Avatar */}
-          <div className="mx-auto mb-4 inline-block overflow-hidden rounded-full border-4 border-white/10 bg-white/5 shadow-2xl">
+          <div className="mx-auto mb-4 inline-block overflow-hidden rounded-full border-4 border-canvas bg-canvas-soft-2 shadow-lvl-2">
             {profile.avatar_url ? (
               <img
                 src={profile.avatar_url}
@@ -57,25 +57,25 @@ export default function ProfilePage() {
                 className="h-28 w-28 object-cover"
               />
             ) : (
-              <div className="flex h-28 w-28 items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-4xl font-bold text-blue-400">
+              <div className="flex h-28 w-28 items-center justify-center bg-canvas-soft-2 text-4xl font-bold text-primary font-sans">
                 {profile.name.charAt(0).toUpperCase()}
               </div>
             )}
           </div>
 
           {/* Name & Username */}
-          <h1 className="text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-2xl font-bold tracking-tight text-primary tracking-[-0.96px]">
             {profile.name}
           </h1>
-          <p className="mt-1 text-sm font-medium text-gray-500">
+          <p className="caption-mono mt-1 text-xs text-muted">
             @{profile.username || "user"}
           </p>
 
           {/* Edit Button */}
-          <div className="mt-6 flex justify-center">
+          <div className="mt-5 flex justify-center">
             <Link
               href="/profile/edit"
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-xs font-bold text-white transition-colors hover:bg-white/10 active:scale-[0.98]"
+              className="flex items-center gap-2 rounded border border-hairline bg-canvas px-5 py-2 text-xs font-bold text-primary transition-colors hover:bg-canvas-soft-2 shadow-lvl-1"
             >
               <svg
                 width="14"
@@ -96,32 +96,32 @@ export default function ProfilePage() {
         </div>
 
         {/* Stats Section */}
-        <div className="px-6 pb-6">
-          <h2 className="mb-3 px-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+        <div className="pb-6">
+          <h2 className="caption-mono mb-3 px-1 text-xs font-bold uppercase tracking-wider text-muted">
             Travel Progress
           </h2>
           <div className="grid grid-cols-3 gap-3">
-            <div className="glass-panel flex flex-col items-center justify-center rounded-2xl p-4 transition-transform hover:scale-105">
-              <span className="text-2xl font-black text-white">
+            <div className="bg-canvas border border-hairline rounded-lg flex flex-col items-center justify-center p-4 shadow-lvl-1">
+              <span className="text-2xl font-extrabold text-primary">
                 {profile.total_places || 0}
               </span>
-              <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-gray-400">
+              <span className="caption-mono mt-1 text-[9px] font-bold uppercase tracking-wider text-muted">
                 Places
               </span>
             </div>
-            <div className="glass-panel flex flex-col items-center justify-center rounded-2xl p-4 transition-transform hover:scale-105">
-              <span className="text-2xl font-black text-white">
+            <div className="bg-canvas border border-hairline rounded-lg flex flex-col items-center justify-center p-4 shadow-lvl-1">
+              <span className="text-2xl font-extrabold text-primary">
                 {profile.total_states || 0}
               </span>
-              <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-gray-400">
+              <span className="caption-mono mt-1 text-[9px] font-bold uppercase tracking-wider text-muted">
                 States
               </span>
             </div>
-            <div className="glass-panel flex flex-col items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10 p-4 transition-transform hover:scale-105">
-              <span className="text-lg font-black text-blue-400">
+            <div className="bg-primary border border-primary rounded-lg flex flex-col items-center justify-center p-4 shadow-lvl-2">
+              <span className="text-sm font-bold text-on-primary">
                 {profile.badge_level || "Beginner"}
               </span>
-              <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-blue-500/50">
+              <span className="caption-mono mt-1.5 text-[9px] font-bold uppercase tracking-wider text-on-primary/60">
                 Badge
               </span>
             </div>
@@ -129,18 +129,18 @@ export default function ProfilePage() {
         </div>
 
         {/* Personal Info Section */}
-        <div className="px-6 pb-8">
-          <h2 className="mb-3 px-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+        <div className="pb-8">
+          <h2 className="caption-mono mb-3 px-1 text-xs font-bold uppercase tracking-wider text-muted">
             Personal Info
           </h2>
-          <div className="glass-panel overflow-hidden rounded-3xl">
-            <div className="flex flex-col p-2">
+          <div className="bg-canvas border border-hairline overflow-hidden rounded-lg shadow-lvl-2">
+            <div className="flex flex-col">
               {/* Bio */}
-              <div className="flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors hover:bg-white/5">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-gray-400 border border-white/5">
+              <div className="flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-canvas-soft-2 border-b border-hairline">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-canvas-soft-2 text-muted border border-hairline">
                   <svg
-                    width="18"
-                    height="18"
+                    width="16"
+                    height="16"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -152,20 +152,22 @@ export default function ProfilePage() {
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
                 </div>
-                <div className="flex-1 border-b border-white/5 pb-2">
-                  <p className="text-sm font-semibold text-white">Bio</p>
-                  <p className="text-xs text-gray-400">
+                <div className="flex-1 min-w-0">
+                  <p className="caption-mono text-[10px] font-bold text-muted uppercase tracking-wider">
+                    Bio
+                  </p>
+                  <p className="text-xs text-primary font-medium mt-0.5 truncate">
                     {profile.bio || "No bio added yet."}
                   </p>
                 </div>
               </div>
 
               {/* Address */}
-              <div className="flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors hover:bg-white/5">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-gray-400 border border-white/5">
+              <div className="flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-canvas-soft-2 border-b border-hairline">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-canvas-soft-2 text-muted border border-hairline">
                   <svg
-                    width="18"
-                    height="18"
+                    width="16"
+                    height="16"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -177,11 +179,11 @@ export default function ProfilePage() {
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                 </div>
-                <div className="flex-1 border-b border-white/5 pb-2">
-                  <p className="text-sm font-semibold text-white">
+                <div className="flex-1 min-w-0">
+                  <p className="caption-mono text-[10px] font-bold text-muted uppercase tracking-wider">
                     Home Address
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-primary font-medium mt-0.5 truncate">
                     {profile.home_city && profile.home_state
                       ? `${profile.home_city}, ${profile.home_state}`
                       : "Not provided"}
@@ -190,11 +192,11 @@ export default function ProfilePage() {
               </div>
 
               {/* Email (Read Only) */}
-              <div className="flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors hover:bg-white/5">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white/5 text-gray-400 border border-white/5">
+              <div className="flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-canvas-soft-2">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-canvas-soft-2 text-muted border border-hairline">
                   <svg
-                    width="18"
-                    height="18"
+                    width="16"
+                    height="16"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -206,11 +208,13 @@ export default function ProfilePage() {
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-white">
+                <div className="flex-1 min-w-0">
+                  <p className="caption-mono text-[10px] font-bold text-muted uppercase tracking-wider">
                     Account Email
                   </p>
-                  <p className="text-xs text-gray-400">{profile.email}</p>
+                  <p className="text-xs text-primary font-medium mt-0.5 truncate">
+                    {profile.email}
+                  </p>
                 </div>
               </div>
             </div>
@@ -218,14 +222,14 @@ export default function ProfilePage() {
         </div>
 
         {/* Logout Button */}
-        <div className="px-6 pb-10">
+        <div className="pb-6">
           <button
             onClick={logout}
-            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-red-500/20 bg-red-500/10 py-4 text-sm font-bold text-red-500 transition-colors hover:bg-red-500/20 active:scale-[0.98]"
+            className="flex w-full items-center justify-center gap-2 rounded border border-error/15 bg-error-soft py-3 text-xs font-bold text-error-deep transition-colors hover:bg-error-soft/80 shadow-lvl-1"
           >
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -240,16 +244,16 @@ export default function ProfilePage() {
             Sign Out
           </button>
         </div>
-      </div>
 
-      {/* Bottom Nav Spacer */}
-      <div className="mt-8 text-center">
-        <Link
-          href="/"
-          className="text-xs font-bold text-gray-500 transition-colors hover:text-white"
-        >
-          &larr; Back to App Feed
-        </Link>
+        {/* Bottom Nav Spacer */}
+        <div className="text-center pt-2">
+          <Link
+            href="/"
+            className="text-xs font-bold text-muted transition-colors hover:text-primary hover:underline"
+          >
+            &larr; Back to App Feed
+          </Link>
+        </div>
       </div>
     </div>
   );

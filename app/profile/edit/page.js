@@ -75,28 +75,28 @@ export default function EditProfilePage() {
 
   if (authLoading || loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-blue-50 to-white">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600"></div>
+      <div className="flex min-h-screen items-center justify-center bg-canvas-soft">
+        <div className="spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-8 sm:py-12">
-      <div className="mx-auto max-w-md">
+    <div className="min-h-screen bg-canvas-soft pb-16 selection:bg-primary/10">
+      <div className="mx-auto max-w-md border-x border-hairline bg-canvas min-h-screen px-6 pt-10 pb-16 shadow-sm">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/profile"
-            className="rounded-full bg-white p-2 text-slate-500 shadow-sm transition-colors hover:text-slate-800"
+            className="rounded border border-hairline bg-canvas p-1.5 text-muted transition-colors hover:bg-canvas-soft-2 hover:text-primary shadow-sm"
           >
             <svg
-              width="20"
-              height="20"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             >
@@ -104,20 +104,20 @@ export default function EditProfilePage() {
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </Link>
-          <h1 className="text-lg font-bold text-slate-800">Edit Profile</h1>
-          <div className="w-9"></div> {/* Spacer for alignment */}
+          <h1 className="text-base font-bold text-primary">Edit Profile</h1>
+          <div className="w-8"></div> {/* Spacer for alignment */}
         </div>
 
         {/* Form Card */}
-        <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+        <div className="rounded-lg border border-hairline bg-canvas p-6 shadow-lvl-2">
           {error && (
-            <div className="mb-6 rounded-xl bg-red-50 p-4 text-sm text-red-600">
+            <div className="mb-5 rounded border border-error/15 bg-error-soft p-4 text-xs font-semibold text-error-deep">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="mb-6 rounded-xl bg-emerald-50 p-4 text-sm font-medium text-emerald-600">
+            <div className="mb-5 rounded border border-link/15 bg-link-bg-soft p-4 text-xs font-semibold text-link-deep">
               Profile updated successfully! Redirecting...
             </div>
           )}
@@ -127,7 +127,7 @@ export default function EditProfilePage() {
             <div>
               <label
                 htmlFor="username"
-                className="mb-1.5 block text-sm font-medium text-slate-700"
+                className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
               >
                 Username
               </label>
@@ -137,7 +137,7 @@ export default function EditProfilePage() {
                 type="text"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                className="w-full rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
                 placeholder="Unique username"
               />
             </div>
@@ -146,7 +146,7 @@ export default function EditProfilePage() {
             <div>
               <label
                 htmlFor="bio"
-                className="mb-1.5 block text-sm font-medium text-slate-700"
+                className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
               >
                 Bio
               </label>
@@ -156,7 +156,7 @@ export default function EditProfilePage() {
                 rows="3"
                 value={formData.bio}
                 onChange={handleChange}
-                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                className="w-full resize-none rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
                 placeholder="Tell us a bit about yourself"
               ></textarea>
             </div>
@@ -166,7 +166,7 @@ export default function EditProfilePage() {
               <div>
                 <label
                   htmlFor="home_state"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
+                  className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
                 >
                   Home State
                 </label>
@@ -176,14 +176,14 @@ export default function EditProfilePage() {
                   type="text"
                   value={formData.home_state}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                  className="w-full rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
                   placeholder="e.g., Maharashtra"
                 />
               </div>
               <div>
                 <label
                   htmlFor="home_city"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
+                  className="caption-mono mb-1.5 block text-xs font-semibold text-body uppercase tracking-wider"
                 >
                   Home City
                 </label>
@@ -193,7 +193,7 @@ export default function EditProfilePage() {
                   type="text"
                   value={formData.home_city}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                  className="w-full rounded border border-hairline bg-canvas px-3 py-2 text-sm text-primary outline-none transition-all focus:border-link focus:ring-4 focus:ring-link/10"
                   placeholder="e.g., Mumbai"
                 />
               </div>
@@ -203,10 +203,10 @@ export default function EditProfilePage() {
             <button
               type="submit"
               disabled={saving}
-              className="mt-4 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/30 active:scale-[0.98] disabled:opacity-70"
+              className="mt-4 flex w-full items-center justify-center rounded bg-primary py-2.5 text-xs font-bold text-on-primary transition-colors hover:bg-body disabled:opacity-50"
             >
               {saving ? (
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-on-primary/30 border-t-on-primary"></div>
               ) : (
                 "Save Changes"
               )}

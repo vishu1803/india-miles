@@ -1,70 +1,175 @@
 @import "tailwindcss";
 
 :root {
-  /* Premium Dark Theme */
-  --background: #000000;
-  --foreground: #ffffff;
+  /* Vercel Stark Light Theme */
+  --background: #fafafa; /* canvas-soft */
+  --foreground: #171717; /* ink */
   
-  --card-bg: rgba(20, 20, 20, 0.6);
-  --card-border: rgba(255, 255, 255, 0.08);
+  --canvas: #ffffff;
+  --canvas-soft: #fafafa;
+  --canvas-soft-2: #f5f5f5;
   
-  --primary: #ffffff;
-  --primary-light: #a1a1aa;
+  --primary: #171717;
+  --on-primary: #ffffff;
+  --ink: #171717;
+  --body: #4d4d4d;
+  --muted: #888888;
   
-  --accent: #3b82f6; /* Modern Blue */
-  --accent-light: #60a5fa;
+  --hairline: #ebebeb;
+  --hairline-strong: #a1a1a1;
   
-  --muted: #a1a1aa;
+  --link: #0070f3;
+  --link-deep: #0761d1;
+  --link-bg-soft: #d3e5ff;
   
-  --success: #10b981;
-  --error: #ef4444;
-  --error-light: rgba(239, 68, 68, 0.1);
-  --error-border: rgba(239, 68, 68, 0.2);
+  --success: #0070f3;
+  --error: #ee0000;
+  --error-soft: #f7d4d6;
+  --error-deep: #c50000;
+  
+  --warning: #f5a623;
+  --warning-soft: #ffefcf;
+  --warning-deep: #ab570a;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-canvas-soft-2: var(--canvas-soft-2);
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  
+  --color-link: var(--link);
+  --color-link-deep: var(--link-deep);
+  --color-link-bg-soft: var(--link-bg-soft);
+  
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-error-soft: var(--error-soft);
+  --color-error-deep: var(--error-deep);
+  
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-deep: var(--warning-deep);
+  
+  --color-develop-start: #007cf0;
+  --color-develop-end: #00dfd8;
+  --color-preview-start: #7928ca;
+  --color-preview-end: #ff0080;
+  --color-ship-start: #ff4d4d;
+  --color-ship-end: #f9cb28;
+  
+  --font-sans: var(--font-geist-sans), Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism Utilities */
-.glass-panel {
-  background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+/* Typographic negative tracking rules for Display typography */
+.display-xl {
+  font-family: var(--font-sans);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -2.4px;
 }
 
-.glass-panel-hover {
-  transition: all 0.3s ease;
+.display-lg {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: -1.28px;
 }
 
-.glass-panel-hover:hover {
-  background: rgba(30, 30, 30, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+.display-md {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.96px;
 }
 
-/* Spinner animation */
+.display-sm {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.6px;
+}
+
+.caption-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.code-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Inset borders and stacked shadow elevations */
+.shadow-lvl-1 {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-lvl-2 {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 2px 2px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-lvl-3 {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06), 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 8px -8px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-lvl-4 {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06), 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-lvl-5 {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06), 0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04), 0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+}
+
+/* Vercel Mesh Gradient Background System */
+.mesh-gradient-bg {
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(80, 227, 194, 0.15) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(0, 112, 243, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(121, 40, 202, 0.15) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(255, 0, 128, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(249, 203, 40, 0.08) 0px, transparent 50%);
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+}
+
+/* Spinner Animation */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--card-border);
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--hairline);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;

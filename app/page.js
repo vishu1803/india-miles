@@ -25,22 +25,22 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-[100dvh] flex-col bg-black selection:bg-blue-500/30">
+    <div className="flex min-h-[100dvh] flex-col bg-canvas-soft selection:bg-primary/10 selection:text-primary">
       {/* Top Navbar */}
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between bg-black/80 px-4 py-4 backdrop-blur-md sm:px-6">
+      <header className="fixed top-0 z-50 flex h-16 w-full items-center justify-between border-b border-hairline bg-canvas/80 px-4 backdrop-blur-md sm:px-6">
         <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded-md bg-white"></div>
-          <h1 className="text-lg font-bold tracking-[0.2em] text-white">
+          <div className="h-6 w-6 rounded bg-primary"></div>
+          <h1 className="text-base font-bold tracking-[0.15em] text-primary">
             INDIAMILES
           </h1>
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-white/70 transition-colors hover:text-white">
+          <button className="text-body transition-colors hover:text-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -56,14 +56,14 @@ export default function Home() {
           {authLoading ? null : isAuthenticated ? (
             <button
               onClick={handleProfileClick}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white transition-colors hover:bg-blue-500"
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-white transition-colors hover:bg-body"
             >
               {user?.name?.charAt(0).toUpperCase()}
             </button>
           ) : (
             <Link
               href="/login"
-              className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-white/20"
+              className="rounded-full border border-hairline bg-canvas px-4 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-canvas-soft-2"
             >
               Log in
             </Link>
@@ -72,19 +72,35 @@ export default function Home() {
       </header>
 
       {/* Main Content (App Feed) */}
-      <main className="flex flex-1 flex-col pt-20 pb-28">
-        <LocationDetector />
+      <main className="flex flex-1 flex-col pt-16 pb-28">
+        {/* Hero section with signature mesh gradient */}
+        <div className="mesh-gradient-bg relative w-full border-b border-hairline pt-16 pb-12 text-center px-4 sm:px-6">
+          <span className="caption-mono uppercase tracking-[0.2em] text-link mb-3 inline-block font-semibold">
+            India Miles
+          </span>
+          <h2 className="display-xl text-primary max-w-2xl mx-auto mb-4">
+            Discover India around you.
+          </h2>
+          <p className="max-w-md mx-auto text-body text-sm sm:text-base leading-relaxed">
+            Real-time location-aware travel insights and explorations across
+            India.
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-8">
+          <LocationDetector />
+        </div>
       </main>
 
       {/* Floating Bottom Navigation */}
-      <div className="fixed bottom-6 left-1/2 z-50 flex w-auto -translate-x-1/2 items-center justify-center gap-6 rounded-full border border-white/10 bg-black/60 px-6 py-3 backdrop-blur-xl sm:bottom-10 sm:gap-10 sm:px-8">
+      <div className="fixed bottom-6 left-1/2 z-50 flex w-auto -translate-x-1/2 items-center justify-center gap-6 rounded-full border border-hairline bg-canvas/90 px-6 py-2.5 shadow-lvl-3 backdrop-blur-xl sm:bottom-8 sm:gap-8 sm:px-7">
         {/* Explore Tab (Active) */}
-        <button className="flex flex-col items-center gap-1 text-white">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+        <button className="flex flex-col items-center gap-0.5 text-primary">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white shadow-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -95,18 +111,18 @@ export default function Home() {
               <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
             </svg>
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider">
+          <span className="text-[9px] font-bold uppercase tracking-wider">
             Explore
           </span>
         </button>
 
         {/* Search Tab */}
-        <button className="flex flex-col items-center gap-1 text-white/50 transition-colors hover:text-white">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full">
+        <button className="flex flex-col items-center gap-0.5 text-muted transition-colors hover:text-primary">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -118,7 +134,7 @@ export default function Home() {
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider">
+          <span className="text-[9px] font-semibold uppercase tracking-wider">
             Search
           </span>
         </button>
@@ -126,13 +142,13 @@ export default function Home() {
         {/* Profile Tab */}
         <button
           onClick={handleProfileClick}
-          className="flex flex-col items-center gap-1 text-white/50 transition-colors hover:text-white"
+          className="flex flex-col items-center gap-0.5 text-muted transition-colors hover:text-primary"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -144,7 +160,7 @@ export default function Home() {
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider">
+          <span className="text-[9px] font-semibold uppercase tracking-wider">
             Profile
           </span>
         </button>

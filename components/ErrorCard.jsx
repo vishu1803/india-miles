@@ -12,48 +12,32 @@ export default function ErrorCard({ message, onRetry }) {
   return (
     <div
       id="error-card"
-      className="w-full max-w-md rounded-xl border p-6 shadow-sm"
-      style={{
-        backgroundColor: "var(--error-light)",
-        borderColor: "var(--error-border)",
-      }}
+      className="w-full max-w-md rounded-xl border border-error/10 bg-error-soft p-6 shadow-lvl-2"
     >
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-3.5 flex items-center gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth={2}
+          strokeWidth={2.5}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-5 w-5"
-          style={{ color: "var(--error)" }}
+          className="h-5 w-5 text-error"
         >
           <circle cx="12" cy="12" r="10" />
           <line x1="12" y1="8" x2="12" y2="12" />
           <line x1="12" y1="16" x2="12.01" y2="16" />
         </svg>
-        <h2 className="text-lg font-semibold" style={{ color: "var(--error)" }}>
-          Location Error
-        </h2>
+        <h2 className="text-base font-bold text-error-deep">Location Error</h2>
       </div>
 
-      <p className="mb-4 text-sm" style={{ color: "var(--foreground)" }}>
-        {message}
-      </p>
+      <p className="mb-5 text-sm text-error-deep leading-relaxed">{message}</p>
 
       <button
         id="retry-button"
         onClick={onRetry}
-        className="w-full cursor-pointer rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors"
-        style={{ backgroundColor: "var(--primary)" }}
-        onMouseEnter={(e) =>
-          (e.currentTarget.style.backgroundColor = "var(--primary-light)")
-        }
-        onMouseLeave={(e) =>
-          (e.currentTarget.style.backgroundColor = "var(--primary)")
-        }
+        className="w-full cursor-pointer rounded-md bg-error py-2.5 text-center text-xs font-bold text-white transition-colors hover:bg-error-deep"
       >
         Try Again
       </button>
